@@ -35,7 +35,7 @@ const routers=[
         meta:{
             title:'我的'
         },
-        component: (resolve)=>require(['./views/my.vue'],resolve)
+        component: (resolve)=>require(['./views/my/view.vue'],resolve)
     }
 ];
 export default routers;

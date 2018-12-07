@@ -9,7 +9,7 @@
                         <img :src="productDictList[item.id].image">
                     </div>
                     <div class="cart-right">
-                        <div class="cart-top"><span>{{ productDictList[item.id].name }}</span>
+                      <div class="cart-top"><h4>{{ productDictList[item.id].name }}</h4>
                         </div>
                           <div class="cart-count">
                         <span class="cart-price">¥ {{productDictList[item.id].cost}}</span>
@@ -28,7 +28,7 @@
 
                 <div class="cart-empty" v-if="!cartList.length">购物车为空</div>
         </div>
-        <div class="cart-promotion" v-show="cartList.length">
+        <div class="cart-promotion" v-show="false">
             <span>使用优惠码: </span>
             <input type="text" v-model="promotionCode"/>
             <span class="cart-control-promotion"
@@ -130,34 +130,36 @@
   height: 100%;
   width:40%;
   float: left;
-
 }
-.cart-right{
+
+div.cart-right{
   /*display: inline-block;*/
   width:60%;
-  left:40%;
-  position: relative;
+  display: inline-block;
   height: 100%;
 }
 div.cart-top{
-  position: absolute;
   text-align: center;
   height: 50%;
   width:100%;
-  line-height:20px;
 }
-.cart-top span{
-  text-align: center;
-}
+
 div.cart-count{
-  top:30%;
-  position: absolute;
   width:100%;
   height: 50%;
-}
-div.cart-count span{
+  float: right;
   text-align: center;
+
 }
+ .cart-price{
+   vertical-align:middle;
+   height: 100%;
+   display: inline-block;
+   float: left;
+   margin-left: 18px;
+   margin-right: 18px;
+}
+
 .cart{
     margin: 16px;
     background: #ffffff;
@@ -174,25 +176,23 @@ div.cart-count span{
         font-size: 14px;
     }
     .cart-content-main{
-        height: 100px;
+        height: 150px;
         line-height: 100px;
       /*text-align: center;*/
         border-bottom: 1px dashed #e9eaec;
-      overflow: hidden;
+        overflow: hidden;
+        margin-top: 8px;
     }
-
     .cart-content-main img{
-        width: 100px;
+        width: 100%;
         height: 100%;
         position: relative;
-        margin: 10px;
-        top: 10px;
     }
     .cart-control-minus,
     .cart-control-add{
-      margin-left: 20px;
-        width: 16px;
-        height: 16px;
+        margin-left: 8px;
+        width: 64px;
+        height: 64px;
         border-radius: 50%;
         text-align: center;
         background: #f8f8f9;
@@ -212,7 +212,7 @@ div.cart-count span{
         padding: 8px 32px;
         background: #2d8cf0;
         color: #fff;
-        border-radius: 6px;
+        border-radius: 8px;
         cursor: pointer;
     }
     .cart-control-promotion{
@@ -224,9 +224,9 @@ div.cart-count span{
         padding: 32px;
         text-align: right;
     }
-.cart-footer-desc{
+    .cart-footer-desc{
     display: inline-block;
-    padding: 0 16px;
+    padding: 0 8px;
 }
     .cart-footer-desc span{
         color: #f2352e;
