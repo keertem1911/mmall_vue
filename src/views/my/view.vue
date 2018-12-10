@@ -2,7 +2,7 @@
     <div class="my">
       <div class="header">
         <mt-header fixed title="我的">
-          <mt-button  slot="right" icon="more iconfont icon-setting"></mt-button>
+          <mt-button  slot="right" class="iconfont icon-setting"></mt-button>
         </mt-header>
       </div>
       <div class="my-main-content">
@@ -13,7 +13,7 @@
           </div>
           <div class="main-type">
             <div class="type-item" v-for="item in types">
-              <div class="type-img"><img :src="item.icon"></div>
+              <div class="type-img"><i class="iconfont" :class="item.icon"></i></div>
               <div class="type-name">{{ item.name }}</div>
             </div>
           </div>
@@ -27,22 +27,22 @@
         return {
           types:[
             {
-              icon: require('./index1.png'),
+              icon: "icon-32",
               name:'待付款',
               action:'/orderlist/1'
             },
             {
-              icon: require('./index2.png'),
+              icon: "icon-daishouhuofuben",
               name:'待收货',
               action:'/orderlist/2'
             },
             {
-              icon: require('./index3.png'),
+              icon: "icon-pinglun",
               name:'待评论',
               action:'/commentlist'
             },
             {
-              icon: require('./index4.png'),
+              icon: "icon-order_icon",
               name:'我的订单',
               action:'/orderlist/4'
             }
@@ -54,9 +54,7 @@
 </script>
 
 <style scoped>
-  .mintui-setting{
-    background-image: url("./setting.png");
-  }
+
   div.main-content{
     flex:3;
 
@@ -113,12 +111,13 @@ div.main-type{
   }
   div.type-name{
     padding: 0;
-    margin: 0;
+    margin: 6px;
     line-height: 1;
   }
-  div.type-img img{
-    width:32px;
-    height:32px;
+  div.type-img i{
+    font-size: 24px;
+    width:64px;
+    height:64px;
   }
   .type-item span{
     float: bottom;

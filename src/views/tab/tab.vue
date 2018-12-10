@@ -1,19 +1,19 @@
 <template>
   <mt-tabbar v-model="message" fixed>
     <mt-tab-item id="index">
-      <img slot="icon" src="./index.png">
+      <i slot="icon" class="iconfont icon-shouye"></i>
       首页
     </mt-tab-item>
     <mt-tab-item id="category">
-      <img slot="icon" src="./category.png">
+      <i slot="icon" class="iconfont icon-fenlei"></i>
       分类
     </mt-tab-item>
     <mt-tab-item id="shopping">
-      <img slot="icon" src="./shopping.png">
+      <i slot="icon" class="iconfont icon-gouwuche"></i>
       购物车
     </mt-tab-item>
     <mt-tab-item id="myself">
-      <img slot="icon" src="./my.png">
+      <i slot="icon" class="iconfont icon-duomeitiicon-"></i>
       我的
     </mt-tab-item>
   </mt-tabbar>

@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 import App from './app.vue'
 import './style.css'
 import product_data from './product.js'
-import {Button,Swipe, SwipeItem,Tabbar, TabItem,Header   } from 'mint-ui'
+import {Button,Swipe, SwipeItem,Tabbar, TabItem,Header,Navbar  } from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
 Vue.component(Button.name,Button);
@@ -14,6 +14,7 @@ Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Tabbar.name, Tabbar);
 Vue.component(TabItem.name, TabItem);
+Vue.component(Navbar.name, Navbar);
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -111,8 +112,5 @@ new Vue({
     el: '#app',
     router: router,
     store: store,
-
-    render: h=>{
-        return h(App)
-    }
+    render: h=> h(App)
 });
