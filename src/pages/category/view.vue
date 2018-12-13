@@ -5,55 +5,45 @@
     </div>
     <div class="main">
       <div class="left-silde">
-        <div class="left-item" v-for="item in items"
-             :class="{ on: type === item.id }" @click="handleChange(item.id)">{{item.name}}</div>
+        <div class="left-item" v-for="item in categorys"
+             :class="{ on: item.active }" @click="handleChange(item.id)">{{item.name}}</div>
       </div>
       <div class="content">
-        <Product v-for="item in filterList" :info="item" :key="item.id"/>
+          <ShopList />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Product from '../../components/product';
+// import Product from '../../components/product';
 import pd from '../../product';
+import {mapState,mapActions} from 'vuex'
+import ShopList from '../../views/shopList/ShopList'
 export default{
       components:{
-        Product
+        ShopList
       },
-  computed:{
-    filterList(){
-      return pd.filter(item=>item.type ===this.type);
-    }
-  },
+      computed:{
+        ...mapState(['categorys']),
+        filterList(){
+          return pd.filter(item=>item.type ===this.type);
+        }
+      },
         data(){
           return{
             productList:pd,
-            type:1,
-            items:[
-              {
-                id:1,
-                name:'补水品'
-              },{
-                id:2,
-                name:'护肤品'
-              }
-            ]
+
           }
         },
         methods:{
           handleChange(id){
             this.type=id;
-            this.productList =this.$store.state.productList.filter(item=>item.type === id);
-            console.log(id)
+            this.$store.dispatch('getShopsByCategoryId',{categoryId:id})
           }
         },
         mounted(){
-          this.type=1;
-          this.$store.commit('changeNavigationShow',true);
-          this.productList =this.$store.state.productList;//.filter(item=>item.type === this.type);
-          console.log(this.productList)
+          this.$store.dispatch('getCategoryList')
         }
     }
 </script>

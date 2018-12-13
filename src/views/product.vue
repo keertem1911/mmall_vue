@@ -49,7 +49,7 @@
             }
         },
         mounted () {
-          this.$store.commit('changeNavigationShow',false);
+
             this.getProduct();
         }
     }

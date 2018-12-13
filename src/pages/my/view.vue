@@ -7,7 +7,7 @@
       </div>
       <div class="my-main-content">
           <div class="main-header">
-            <div class="main-img"><img src="./header.png"></div>
+            <div class="main-img"><img src="header.png"></div>
             <div class="main-content">
             <p>账号名称: swqsvf2312dc</p></div>
           </div>
@@ -29,22 +29,22 @@
             {
               icon: "icon-32",
               name:'待付款',
-              action:'/orderlist/1'
+              action:'/my/orderlist/1'
             },
             {
               icon: "icon-daishouhuofuben",
               name:'待收货',
-              action:'/orderlist/2'
+              action:'/my/orderlist/2'
             },
             {
               icon: "icon-pinglun",
               name:'待评论',
-              action:'/commentlist'
+              action:'/my/commentlist'
             },
             {
               icon: "icon-order_icon",
               name:'我的订单',
-              action:'/orderlist/4'
+              action:'/my/orderlist/4'
             }
           ]
         }

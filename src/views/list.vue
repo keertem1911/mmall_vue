@@ -1,5 +1,5 @@
 <template>
-    <div v-show="list.length">
+    <div v-show="productList.length">
         <div class="list-control">
             <div class="list-control-filter">
                 <span>品牌: </span>
@@ -46,6 +46,7 @@
 
 <script>
     import Product from '../components/product.vue'
+    import {mapState} from 'vuex'
     export default {
         components:{Product},
         data(){
@@ -56,20 +57,9 @@
             }
         },
         computed: {
-          cartList(){
-            return this.$store.state.cartList
-          },
-            colors(){
-                return this.$store.getters.colors
-            },
-            brands(){
-                return this.$store.getters.brands
-            },
-            list(){
-                return this.$store.state.productList;
-            },
+          ...mapState(['cartList','colors','brands','productList']),
             filteredAndOrderedList(){
-                let list= [...this.list];
+                let list= [...this.productList];
                 if (this.filterBrand !== '') {
                     list = list.filter(item => item.brand === this.filterBrand);
                 }

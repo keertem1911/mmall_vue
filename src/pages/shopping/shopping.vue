@@ -54,7 +54,8 @@
 </template>
 
 <script>
-    import product_data from '../product.js'
+    import product_data from '../../product.js'
+    import {mapState}from 'vuex'
     export default {
         data(){
           return {
@@ -92,9 +93,8 @@
             }
         },
         computed:{
-          cartList(){
-              return this.$store.state.cartList
-          },
+          ...mapState(['cartList']),
+
           productDictList(){
               const dict={};
               this.productList.forEach(item=>{
@@ -118,10 +118,7 @@
                 return cost;
             }
         },
-        name: "cart",
-        mounted(){
-          this.$store.commit('changeNavigationShow',true);
-        }
+        name: "cart"
     }
 </script>
 

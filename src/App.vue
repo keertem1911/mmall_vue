@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view></router-view>
-    <tab-footer v-show="isShow"></tab-footer>
+    <tab-footer v-show="this.$route.meta.showFooter"></tab-footer>
   </div>
 </template>
 <script>
@@ -28,12 +28,7 @@
       cartList(){
         return this.$store.state.cartList
       },
-      isShow(){
-        return this.$store.state.navigationShow;
-      }
     },
-
-
   }
 </script>
 <style scoped>
