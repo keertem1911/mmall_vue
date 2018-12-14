@@ -1,6 +1,7 @@
 import $ from 'axios'
 const baseURL = '/api';
 $.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+$.defaults.withCredentials=true;
 export default function ajax(url,data={},type='GET'){
   return new Promise(function (resolve, reject) {
     let promise;
