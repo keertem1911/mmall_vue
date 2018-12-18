@@ -3,9 +3,9 @@ import App from './app.vue'
 import './style.css'
 import store from './store'
 import router from './router'
-import {Button,Tabbar, TabItem,Header,Navbar  } from 'mint-ui'
+import {Button,Tabbar, TabItem,Header,Navbar } from 'mint-ui'
 import 'mint-ui/lib/style.css'
-
+import './mock/mockServer'
 Vue.component(Button.name,Button);
 Vue.component(Header .name,Header );
 Vue.component(Tabbar.name, Tabbar);

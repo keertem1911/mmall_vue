@@ -7,6 +7,7 @@ import Category from '../pages/category/view.vue'
 import OrderList from '../views/orderlist/view.vue'
 import My from '../pages/my/view.vue'
 import CommentList from '../views/comment/view'
+import Login from '../pages/login/login'
 const routers=[
     {
         path:'/product/:id',
@@ -14,6 +15,12 @@ const routers=[
             title:'商品详情',
         },
         component: Product
+    }, {
+        path:'/login',
+        meta:{
+            title:'登陆',
+        },
+        component: Login
     },{
         path: '/list',
         meta:{
@@ -25,28 +32,32 @@ const routers=[
         path:'/shopping',
         meta:{
             title:'购物车',
-          showFooter:true
+          showFooter:true,
+          index:'shopping'
         },
         component: Shopping
     }, {
         path:'/index',
         meta:{
             title:'首页',
-          showFooter:true
+          showFooter:true,
+          index:'index'
         },
         component: Index
     },{
         path:'/category',
         meta:{
             title:'分类',
-          showFooter:true
+          showFooter:true,
+          index:'category'
         },
         component: Category
     },{
         path:'/myself',
         meta:{
             title:'我的',
-          showFooter:true
+          showFooter:true,
+          index:'myself'
         },
         children:[{
           path:'orderlist/:id',

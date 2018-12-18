@@ -1,7 +1,9 @@
 <template>
   <section class="msite">
     <div class="header">
-      <mt-header fixed title="首页"></mt-header>
+      <mt-header fixed title="首页">
+        <mt-button  slot="right"  @click="$router.push('login')" title="" v-if="!this.$store.state.userinfo._id">登陆|注册</mt-button>
+      </mt-header>
     </div>
 
     <div class="miste-content-wrapper">
@@ -76,7 +78,6 @@
       }
     },
     mounted () {
-
       this.$store.dispatch('getBanners');
       this.$store.dispatch('getIndexItems');
     },
@@ -114,7 +115,7 @@
     .miste-content-wrapper
       position fixed
       top: 45px
-      bottom: 46px
+      bottom: 50px
       width: 100%
       .msite_shop_list
         top-border-1px(#e4e4e4)

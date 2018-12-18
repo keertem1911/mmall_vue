@@ -2,9 +2,25 @@ import {
   RECEIVE_ADDRESS,
   RECEIVE_INDEXITEMS,
   RECEIVE_BANNERS,
-  RECEIVE_CATEGORYS
+  RECEIVE_CATEGORYS,
+  RECEIVE_CATEGORYITEMS,
+  RECEIVE_USERINFO,
+  RECEIVE_RECORDUSER,
+  RECEIVE_LOGOUT
 } from './mutation-type'
 export default {
+  [RECEIVE_LOGOUT](state){
+    state.userinfo={};
+  },
+  [RECEIVE_RECORDUSER](state,{user}){
+    state.userinfo=user;
+  },
+  [RECEIVE_USERINFO](state,{userinfo}){
+    state.userinfo= userinfo;
+  },
+  [RECEIVE_CATEGORYITEMS](state,{categoryItems}){
+    state.categoryList=categoryItems;
+  },
   [RECEIVE_ADDRESS] (state,{address}) {
   },
   [RECEIVE_BANNERS](state,{banners}){

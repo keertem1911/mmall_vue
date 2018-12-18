@@ -23,7 +23,7 @@
     export default {
       data(){
         return {
-          message:'index',
+          message:this.$route.meta.index||'index',
         }
       },
       mounted(){

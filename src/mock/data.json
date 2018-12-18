@@ -1,0 +1,18 @@
+{
+"banners":
+       [
+             {
+               "id": "aewf321222",
+               "image_url":"Random.image('200x100')"
+               },
+             {
+               "id": "aewf321222",
+               "image_url":"Random.image('200x100')"
+             },
+             {
+               "id": "aewf321222",
+               "image_url":"Random.image('200x100')"
+             }
+         ]
+
+}

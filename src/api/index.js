@@ -1,5 +1,5 @@
 import ajax from '../common/httputil.js'
-
+const BASE_URL='/api';
 /**
  * 获取首页轮播图
  * {
@@ -12,7 +12,7 @@ import ajax from '../common/httputil.js'
  *     ]
  * }
  */
-export const reqBanners = ()=>ajax('/api/banners');
+export const reqBanners = ()=>ajax(`${BASE_URL}/banners`);
 /**
  * 获取首页推荐item
  * {
@@ -29,7 +29,7 @@ export const reqBanners = ()=>ajax('/api/banners');
  *
  * }
  */
-export const reqIndexItems= ()=>ajax('/api/indexItems');
+export const reqIndexItems= ()=>ajax(`${BASE_URL}/indexItems`);
 /**
  * 获取分类类别
  * {
@@ -42,7 +42,7 @@ export const reqIndexItems= ()=>ajax('/api/indexItems');
  *     ]
  * }
  */
-export const reqCategorys= ()=>ajax('/api/categorys');
+export const reqCategorys= ()=>ajax(`${BASE_URL}/categorys`);
 /**
  * 根据分类信息获取item
  * @param category
@@ -61,7 +61,7 @@ export const reqCategorys= ()=>ajax('/api/categorys');
  *     ]
  * }
  */
-export const reqShopsByCategoryId= (categoryId)=>ajax('/api/shops',{categoryId});
+export const reqShopsByCategoryId= (categoryId)=>ajax(`${BASE_URL}/shops`,{categoryId});
 /**
  * 发送短信验证码
  * @param phone 手机号码
@@ -75,7 +75,7 @@ export const reqShopsByCategoryId= (categoryId)=>ajax('/api/shops',{categoryId})
  *     msg:''
  * }
  */
-export const reqSmsCode= (phone)=>ajax('/api/smsCode',{phone});
+export const reqSmsCode= (phone)=>ajax(`${BASE_URL}/login/sms_code`,{phone});
 /**
  *短信验证码登陆
  * @param info
@@ -92,7 +92,7 @@ export const reqSmsCode= (phone)=>ajax('/api/smsCode',{phone});
     }
   }
  */
-export const reqLoginSms= (phone,smsCode)=> ajax('/api/login_sms',
+export const reqLoginSms= (phone,smsCode)=> ajax(`${BASE_URL}/login_sms`,
   {
     phone,
     smsCode
@@ -115,14 +115,14 @@ export const reqLoginSms= (phone,smsCode)=> ajax('/api/login_sms',
     }
   }
  */
-export const reqLoginPwd=(name,pwd,captcha)=>ajax('/api/login_pwd',{name,pwd,captcha},'POST');
+export const reqLoginPwd=(name,pwd,captcha)=>ajax(`${BASE_URL}/login_pwd`,{name,pwd,captcha},'POST');
 
 /**
  * 获取图片验证码
  * @param uuid 用户id
  * <svg>
  */
-export const reqCaptcha= (uuid)=>ajax('/api/captcha',{uuid});
+export const reqCaptcha= (uuid)=>ajax(`${BASE_URL}/captcha`,{uuid});
 
 /**
  * 根据会话获取用户信息
@@ -140,13 +140,13 @@ export const reqCaptcha= (uuid)=>ajax('/api/captcha',{uuid});
     "msg": "请先登陆"
   }
  */
-export const reqUserInfo=()=>ajax('/api/userinfo');
+export const reqUserInfo=()=>ajax(`${BASE_URL}/user/info`);
 
 /**
  * 用户登出
  * {code: 0}
  */
-export const reqLogOut = ()=>ajax('/api/logout');
+export const reqLogOut = ()=>ajax(`${BASE_URL}/user/logout`);
 
 /**
  * 添加购物车
@@ -167,14 +167,14 @@ export const reqLogOut = ()=>ajax('/api/logout');
  *  msg:"添加失败"
  *  }
  */
-export const reqAddCar=(products)=>ajax('/api/car',{products},'post');
+export const reqAddCar=(products)=>ajax(`${BASE_URL}/car`,{products},'post');
 /**
  * 删除购物车
  * {
  *     products:["id1","id2"]
  * }
  */
-export const reqRemoveCar= (products)=>ajax('/api/car',{products},'delete');
+export const reqRemoveCar= (products)=>ajax(`${BASE_URL}/car`,{products},'delete');
 /**
  * 修改购物车数量
  * {

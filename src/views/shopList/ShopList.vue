@@ -1,6 +1,6 @@
 <template>
   <div class="shop_container">
-    <ul class="shop_list" v-if="shops.length">
+    <ul class="shop_list" v-if="shopList.length">
       <li class="shop_li border-1px" v-for="(shop, index) in shopList"
           :key="index" @click="$router.push(`/product/${shop.id}`)">
         <a>
@@ -14,7 +14,7 @@
             <section class="shop_rating_order">
               <section class="shop_rating_order_left">
                 <div class="rating_section">
-                  {{shop.rating}}
+                  评价:{{shop.rating}}
                 </div>
                 <div class="order_section">
                   月售{{shop.recent_order_num}}单
@@ -50,7 +50,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixins.styl"
   .shop_container
-    margin-bottom 50px
+    margin-bottom 10px
     .shop_list
       .shop_li
         bottom-border-1px(#f1f1f1)

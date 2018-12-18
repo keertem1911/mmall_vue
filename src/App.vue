@@ -1,11 +1,12 @@
 <template>
   <div>
     <router-view></router-view>
-    <tab-footer v-show="this.$route.meta.showFooter"></tab-footer>
+    <tab-footer style="margin-top: 20px;" v-show="this.$route.meta.showFooter"></tab-footer>
   </div>
 </template>
 <script>
   import TabFooter from './views/tab/tab'
+  import {mapActions} from'vuex'
   export default {
     components:{TabFooter},
   data(){
@@ -27,8 +28,14 @@
     computed:{
       cartList(){
         return this.$store.state.cartList
-      },
+      }
     },
+    mounted(){
+      this.getUserInfo()
+    },
+    methods:{
+      ...mapActions(['getUserInfo'])
+    }
   }
 </script>
 <style scoped>
