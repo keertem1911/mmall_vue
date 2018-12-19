@@ -75,7 +75,7 @@ export const reqShopsByCategoryId= (categoryId)=>ajax(`${BASE_URL}/shops`,{categ
  *     msg:''
  * }
  */
-export const reqSmsCode= (phone)=>ajax(`${BASE_URL}/login/sms_code`,{phone});
+export const reqSmsCode= (phone)=>ajax(`${BASE_URL}/sms_code`,{phone});
 /**
  *短信验证码登陆
  * @param info
