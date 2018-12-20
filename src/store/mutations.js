@@ -6,11 +6,24 @@ import {
   RECEIVE_CATEGORYITEMS,
   RECEIVE_USERINFO,
   RECEIVE_RECORDUSER,
-  RECEIVE_LOGOUT
+  RECEIVE_LOGOUT,
+  RECEIVE_PRODUCTID,
+  RECEIVE_ADDCAR
 } from './mutation-type'
 export default {
+  [RECEIVE_ADDCAR](state,{id,num}){
+    console.log(num+" =>"+id )
+    if(state.carNum[id]){
+      state.carNum[id]=num+state.carNum[id];
+    }else{
+      state.carNum[id]=num;
+    }
+  },
   [RECEIVE_LOGOUT](state){
     state.userinfo={};
+  },
+  [RECEIVE_PRODUCTID](state,{detail}){
+    state.detail=detail;
   },
   [RECEIVE_RECORDUSER](state,{user}){
     state.userinfo=user;
@@ -47,7 +60,7 @@ export default {
   setProductList(state,data){
     state.productList=data
   },
-  addCart (state, id) {
+  addCar (state, id) {
     const isAdded= state.cartList.find(m=>m.id ===id);
     if(isAdded){
       isAdded.count++

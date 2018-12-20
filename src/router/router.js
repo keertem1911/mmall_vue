@@ -1,5 +1,5 @@
 
-import Product from '../views/product.vue'
+import Product from '../views/product/product.vue'
 import List from '../views/list.vue'
 import Shopping from '../pages/shopping/shopping.vue'
 import Index from '../pages/index/index.vue'
@@ -73,9 +73,6 @@ const routers=[
           component: CommentList
         }],
         component: My
-    },{
-      path:'*',
-      redirect:'/index'
   }
 ];
 export default routers;

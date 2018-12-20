@@ -10,4 +10,9 @@ export default {
   navigationShow:true,
   banners:[],
   userinfo:{},
+  carNum:{},
+  detail:{
+    images:[],
+    desclist:[]
+  }
 }

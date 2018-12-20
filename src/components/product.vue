@@ -26,7 +26,7 @@
         },
         methods: {
             handleCart () {
-                this.$store.commit('addCart', this.info.id);
+                this.$store.commit('addCar', this.info.id);
             }
         }
     };

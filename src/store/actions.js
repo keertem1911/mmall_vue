@@ -5,7 +5,10 @@ import {
   reqCategorys,
   reqShopsByCategoryId,
   reqUserInfo,
-  reqLogOut
+  reqLogOut,
+  reqProductById,
+  reqAddCar,
+  reqCars
 } from '../api'
 import {
   RECEIVE_ADDRESS,
@@ -15,7 +18,9 @@ import {
   RECEIVE_CATEGORYITEMS,
   RECEIVE_USERINFO,
   RECEIVE_RECORDUSER,
-  RECEIVE_LOGOUT
+  RECEIVE_LOGOUT,
+  RECEIVE_PRODUCTID,
+  RECEIVE_ADDCAR
 
 } from './mutation-type'
 import product_data from "@/product";
@@ -45,12 +50,14 @@ export  default {
       const result= await reqIndexItems();
       commit(RECEIVE_INDEXITEMS,{indexItems:result.data})
   },
-  async getCategoryList({commit,dispatch}){
+  async getCategoryList({commit,dispatch},callback){
       const result =await  reqCategorys();
+      if(result.code===0){
+        commit(RECEIVE_CATEGORYS,{category:result.data});
+        callback &&callback()
+      }
 
-      commit(RECEIVE_CATEGORYS,{category:result.data});
-      const activeItem =result.data.filter(item=>item.active);
-    dispatch('getShopsByCategoryId',{categoryId:activeItem[0].id})
+
   },
   async getShopsByCategoryId({commit},{categoryId}){
       const result =await  reqShopsByCategoryId(categoryId);
@@ -61,8 +68,16 @@ export  default {
       if(result.code===0&&result.data)
       commit(RECEIVE_USERINFO,{userinfo:result.data})
   },
-  async recordUser({commit},user){
+    recordUser({commit},user){
       commit(RECEIVE_RECORDUSER,{user})
+  },
+  async getProduct({commit},id){
+    console.log("getProduct "+id)
+    const result= await  reqProductById(id);
+    if(result.code===0){
+        commit(RECEIVE_PRODUCTID,{detail:result.data})
+
+    }
   },
   async logout({commit}){
       const result =await reqLogOut();
@@ -70,5 +85,12 @@ export  default {
       if(result.code=== 0){
       commit(RECEIVE_LOGOUT)
       }
+  },
+  async addCar({commit},{id,num}){
+    const result= await reqAddCar(id,num);
+    if(result.code === 0){
+       commit(RECEIVE_ADDCAR,{id,num})
+    }
   }
+
 }

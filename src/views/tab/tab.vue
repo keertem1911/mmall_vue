@@ -9,6 +9,7 @@
       分类
     </mt-tab-item>
     <mt-tab-item id="shopping">
+      <span class="cart-num" v-if="carNum.keySize>0">{{carNum.keySize}}</span>
       <i slot="icon" class="iconfont icon-gouwuche"></i>
       购物车
     </mt-tab-item>
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
     export default {
       data(){
         return {
@@ -47,10 +49,21 @@
           }
         }
       },
-        name: "tab"
+        name: "tab",
+      computed:{
+        ...mapState(['carNum'])
+      }
     }
 </script>
 
 <style scoped>
-
+  .cart-num{
+    position:absolute;
+    background: red;
+    color: white;
+    border-radius: 5px; /*圆角*/
+    padding: 0px 3px; /*左右边距*/
+    top: 0; /*数字离图片右上角的高度*/
+    left: 65%;
+  }
 </style>

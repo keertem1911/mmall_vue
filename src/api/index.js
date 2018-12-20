@@ -167,7 +167,7 @@ export const reqLogOut = ()=>ajax(`${BASE_URL}/user/logout`);
  *  msg:"添加失败"
  *  }
  */
-export const reqAddCar=(products)=>ajax(`${BASE_URL}/car`,{products},'post');
+export const reqAddCar=(id,num)=>ajax(`${BASE_URL}/car`,{id,num},'post');
 /**
  * 删除购物车
  * {
@@ -245,3 +245,5 @@ export const reqAddAddress=(
   {
     province,city,area,text,tag,name,phone,isdefault
   },'post');
+
+export const reqProductById= (productId)=>ajax(`${BASE_URL}/product/${productId}`);
