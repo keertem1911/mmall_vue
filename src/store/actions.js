@@ -20,7 +20,12 @@ import {
   RECEIVE_RECORDUSER,
   RECEIVE_LOGOUT,
   RECEIVE_PRODUCTID,
-  RECEIVE_ADDCAR
+  RECEIVE_ADDCAR,
+  INCREMENT_FOOD_COUNT,
+  DECREMENT_FOOD_COUNT,
+  SELECTED_ALL_FOODS,
+  UNSELECTED_ALL_FOODS,
+  RECEIVE_CARS
 
 } from './mutation-type'
 import product_data from "@/product";
@@ -86,10 +91,31 @@ export  default {
       commit(RECEIVE_LOGOUT)
       }
   },
-  async addCar({commit},{id,num}){
-    const result= await reqAddCar(id,num);
+  async addCar({commit},{id,count,price}){
+    const result= await reqAddCar(id,count);
     if(result.code === 0){
-       commit(RECEIVE_ADDCAR,{id,num})
+       commit(RECEIVE_ADDCAR,{id,count,price})
+    }
+  },
+  updateFoodCount({commit},{food,isAdd}){
+      if(isAdd){
+        commit(INCREMENT_FOOD_COUNT,food)
+      }else{
+        commit(DECREMENT_FOOD_COUNT,food)
+      }
+  },
+  async getCar({commit}){
+    const result =await  reqCars();
+    if(result.code=== 0){
+      commit(RECEIVE_CARS,result.data)
+    }
+  },
+  changeSelected({commit},{isSelected}){
+    if(isSelected){
+      commit(SELECTED_ALL_FOODS);
+    }else{
+      commit(UNSELECTED_ALL_FOODS);
+
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <mt-tabbar v-model="message" fixed>
+  <mt-tabbar v-model="index" fixed>
     <mt-tab-item id="index">
       <i slot="icon" class="iconfont icon-shouye"></i>
       首页
@@ -9,7 +9,7 @@
       分类
     </mt-tab-item>
     <mt-tab-item id="shopping">
-      <span class="cart-num" v-if="carNum.keySize>0">{{carNum.keySize}}</span>
+      <span class="cart-num" v-if="totalCount>0">{{totalCount}}</span>
       <i slot="icon" class="iconfont icon-gouwuche"></i>
       购物车
     </mt-tab-item>
@@ -21,18 +21,21 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import {mapGetters} from 'vuex'
     export default {
-      data(){
-        return {
-          message:this.$route.meta.index||'index',
-        }
-      },
-      mounted(){
-        this.$router.push(this.message)
+     data(){
+       return {
+         index:this.message
+       }
+     },
+      props:{
+        message:String
       },
       watch: {
-        message:function (val,oldVal)   {
+       message:function(val,old){
+         this.index=val;
+       },
+        index :function (val,oldVal){
           switch (val) {
             case "index":
               this.$router.push('/index');
@@ -51,7 +54,7 @@
       },
         name: "tab",
       computed:{
-        ...mapState(['carNum'])
+        ...mapGetters(['totalCount'])
       }
     }
 </script>

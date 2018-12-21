@@ -1,22 +1,16 @@
 export default {
-  brands:state=>{
-    const brands= state.productList.map(b=>b.brand);
-    return getFilterArray(brands);
+
+  totalCount (state) {
+    return state.cartFoods.reduce((preTotal, food) => preTotal + food.count||0 , 0)
   },
-  colors: state=>{
-    const colors =state.productList.map(c=>c.color);
-    return getFilterArray(colors);
+
+  totalPrice (state) {
+    return state.cartFoods.reduce((preTotal, food) => preTotal + (food.selected?food.count:0)*food.price , 0)
+  },
+  isAllSelected:state=>{
+    return state.cartFoods.filter(item=>item.selected).length=== state.cartFoods.length
   }
+
 }
 
-function getFilterArray(array) {
-  let _self=[];
-  let json={};
-  for (let i = 0; i < array.length; i++) {
-    if(!json[array[i]]){
-      _self.push(array[i]);
-      json[array[i]]=1;
-    }
-  }
-  return _self;
-}
+

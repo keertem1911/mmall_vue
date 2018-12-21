@@ -171,5 +171,38 @@ Mock.mock(RegExp('/api/product' + ".*"), {
     }
 });
 Mock.mock(RegExp('/api/car' + ".*"), {
-  code: 0
+  code: 0,
+  "data":[
+    {
+      "id|1000-9999":11,
+      image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+      name:Mock.mock('@name'),
+      "price|10-200":1,
+      "rating|1-10":2,
+      "recent_order_num|1-100":1,
+      count:1,
+      selected:true
+    },
+    {
+      "id|1000-9999":11,
+      image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+      name:Mock.mock('@name'),
+      "price|10-200":1,
+      "rating|1-10":2,
+      "recent_order_num|1-100":1 ,
+      count:1,
+      selected:true
+    },
+    {
+      "id|1000-9999":11,
+      image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+      name:Mock.mock('@name'),
+      "price|10-200":1,
+      "rating|1-10":2,
+      "recent_order_num|1-100":1 ,
+      count:1,
+      selected:false
+    }
+  ]
 });
+

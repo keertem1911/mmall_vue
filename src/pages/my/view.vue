@@ -15,7 +15,7 @@
             <p v-else>账号名称: {{userinfo.name||userinfo.phone}}</p></div>
           </div>
           <div class="main-type">
-            <div class="type-item" v-for="item in types">
+            <div class="type-item" v-for="item in types" @click="$router.push(item.action)">
               <div class="type-img"><i class="iconfont" :class="item.icon"></i></div>
               <div class="type-name">{{ item.name }}</div>
             </div>
@@ -40,22 +40,22 @@
             {
               icon: "icon-32",
               name:'待付款',
-              action:'/my/orderlist/1'
+              action:'/orderlist/2'
             },
             {
               icon: "icon-daishouhuofuben",
               name:'待收货',
-              action:'/my/orderlist/2'
+              action:'/orderlist/3'
             },
             {
               icon: "icon-pinglun",
               name:'待评论',
-              action:'/my/commentlist'
+              action:'/commentlist'
             },
             {
               icon: "icon-order_icon",
               name:'我的订单',
-              action:'/my/orderlist/4'
+              action:'/orderlist/1'
             }
           ]
         }

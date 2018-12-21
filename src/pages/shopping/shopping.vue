@@ -4,229 +4,186 @@
              <mt-header fixed title="购物车清单"></mt-header>
         </div>
         <div class="cart-content">
-                <div class="cart-content-main" v-for="(item, index) in cartList">
-                    <div class="cart-left">
-                        <img :src="productDictList[item.id].image">
+          <div class="foods-wrapper" >
+            <ul>
+                  <li class="food-item bottom-border-1px" v-for="(car, index) in cartFoods"
+                      :key="index" v-if="car.count>0">
+                    <div class="seleced-input">
+                      <i class="car-selected iconfont icon-radiobox" v-if="car.selected" @click="car.selected=!car.selected"></i>
+                      <i class="car-selected iconfont icon-radio02"v-else @click="car.selected=!car.selected"></i>
+                      <!--<input  class="car-selected" type="checkbox" v-model="car.selected"/>-->
                     </div>
-                    <div class="cart-right">
-                      <div class="cart-top"><h4>{{ productDictList[item.id].name }}</h4>
-                        </div>
-                          <div class="cart-count">
-                        <span class="cart-price">¥ {{productDictList[item.id].cost}}</span>
-                          <span class="cart-control-minus"
-                                @click="handleCount(index,-1)">-</span>
-                            {{ item.count }}
-                            <span class="cart-control-add"
-                                  @click="handleCount(index,1)">+</span>
-                          </div>
+                    <div class="icon">
+                      <img width="57" height="57" :src="car.image_path">
+                    </div>
+                    <div class="content">
+                      <h2 class="name">{{car.name}}</h2>
+                      <!--<p class="desc">{{food.description}}</p>-->
+                      <div class="extra">
+                        <span class="count">月售{{car.recent_order_num}}份</span>
+                        <span>好评率{{car.rating}}%</span>
                       </div>
-
-                    <div class="cart-delete">
-                        <span class="cart-control-delete" @click="handleDelete(index)">删除</span>
+                      <div class="price">
+                        <span class="now">￥{{car.price}}</span>
+                        <span class="old" v-if="car.oldPrice">￥{{food.oldPrice}}</span>
+                      </div>
+                      <div class="cartcontrol-wrapper">
+                        <car-control :food="car"/>
+                      </div>
                     </div>
-                </div>
-
-                <div class="cart-empty" v-if="!cartList.length">购物车为空</div>
-        </div>
-        <div class="cart-promotion" v-show="false">
-            <span>使用优惠码: </span>
-            <input type="text" v-model="promotionCode"/>
-            <span class="cart-control-promotion"
-            @click="handleCheckCode">验证</span>
-        </div>
-        <div class="cart-footer" v-show="cartList.length">
-            <div class="cart-footer-desc">
-                共计 <span>{{ countAll}}</span>件商品
+                  </li>
+            </ul>
+          </div>
+          <div class="cart-empty" v-if="totalCount===0">购物车为空</div>
+          <div class="detailhandler">
+            <div class="select-all" @click="changeSelected" >
+              <i class="iconfont icon-radiobox" v-if="isAllSelected" >全选</i>
+              <i class="iconfont icon-radio02" v-else >全选</i>
             </div>
-            <div class="cart-footer-desc">
-                应付总额 <span>￥{{ costAll -promotion }}</span>
-                <br>
-                <template v-if="promotion">
-                    (优惠 <span>￥{{promotion}}</span>)
-                </template>
-                <div class="cart-footer-desc">
-                    <div class="cart-control-order"
-                    @click="handleOrder">现在结算</div>
-                </div>
+            <div class="totle-price">
+              合计:￥{{totalPrice}}
             </div>
+            <div class="gotobuy"><mt-button  size="large" style="color: #ffffff;background: #f25807">去结算({{totalCount}})</mt-button></div>
+          </div>
         </div>
     </div>
 </template>
 
 <script>
-    import product_data from '../../product.js'
-    import {mapState}from 'vuex'
+    import CarControl from '../../views/cartcontroller/view'
+    import {mapState,mapGetters}from 'vuex'
+
     export default {
+       components:{
+         CarControl,
+       },
         data(){
           return {
-              promotionCode:'',
-              promotion:0,
-              productList:product_data
           }
         },
-        methods:{
-            handleCheckCode(){
-                if(this.promotionCode === ''){
-                    window.alert('请输入优惠码');
-                    return ;
-                }
-                if(this.promotionCode !== 'Vue'){
-                    window.alert('优惠码验证失败');
-                }else{
-                    this.promotion =500;
-                }
-            },
-            handleCount(index,count){
-                if(count<0 && this.cartList[index].count ===1) return;
-                this.$store.commit('editCartCount',{
-                    id: this.cartList[index].id,
-                    count:count
-                })
-            },
-            handleOrder(){
-              this.$store.dispatch('buy').then(()=>{
-                  window.alert('购买成功');
-              })
-            },
-            handleDelete(index){
-                this.$store.commit('deleteCart',this.cartList[index].id)
-            }
-        },
-        computed:{
-          ...mapState(['cartList']),
+      computed:{
+        ...mapState(['cartFoods']),
+        ...mapGetters(['totalCount','totalPrice','isAllSelected']),
+      },
 
-          productDictList(){
-              const dict={};
-              this.productList.forEach(item=>{
-                  dict[item.id]=item;
-              });
-              return dict;
+      mounted() {
+        this.$store.dispatch('getCar', () => {// 数据更新后执行
+          this.$nextTick(() => { // 列表数据更新显示后执行
+            this._initScroll();
+          })
+        })
 
-          },
-            countAll(){
-              let count=0;
-              this.cartList.forEach(item=>{
-                  count += parseInt(item.count);
-              });
-              return count;
-            },
-            costAll(){
-              let cost=0;
-              this.cartList.forEach(item=>{
-                  cost += this.productDictList[item.id].cost * item.count;
-              });
-                return cost;
-            }
+      },
+        name: "cart",
+      methods: {
+        changeSelected(){
+          this.$store.dispatch('changeSelected',{isSelected:!this.isAllSelected})
         },
-        name: "cart"
+        // 初始化滚动
+        _initScroll() {
+          // 列表显示之后创建
+          new BScroll('.foods-wrapper', {
+            click: true
+          });
+        }
+      }
     }
 </script>
 
-<style scoped>
-.cart-left{
-  height: 100%;
-  width:40%;
-  float: left;
-}
+<style lang="stylus" rel="stylesheet/stylus">
+  @import "../../common/stylus/mixins.styl"
+  .cart
+    display: flex
+    position: absolute
+    top: 30px
+    bottom: 46px
+    width: 100%
+    background: #f1f1f1;
+    overflow: hidden
+    .cart-content
+      width:100%
+      top:45px
+    .foods-wrapper
+      & ul
+        margin-top 15px
+        width:100%
+        background white
+      .food-item
+        display: flex
+        margin: 18px 8px
+        padding-bottom: 18px
+        bottom-border-1px(rgba(7, 17, 27, 0.1))
+        &:last-child
+          border-none()
+          margin-bottom: 0
+        .seleced-input
+          flex: 0 0 20px
+          text-align center
+          & i
+            width:20px
+            line-height 55px
+            margin 0 auto
+        .icon
+          flex: 0 0 57px
+          margin-right: 10px
+        .content
+          flex: 1
+          .name
+            margin: 2px 0 8px 0
+            height: 14px
+            line-height: 14px
+            font-size: 14px
+            color: rgb(7, 17, 27)
+          .desc, .extra
+            line-height: 10px
+            font-size: 10px
+            color: rgb(147, 153, 159)
+          .desc
+            line-height: 12px
+            margin-bottom: 8px
+          .extra
+            .count
+              margin-right: 12px
+          .price
+            font-weight: 700
+            line-height: 24px
+            .now
+              margin-right: 8px
+              font-size: 14px
+              color: rgb(240, 20, 20)
+            .old
+              text-decoration: line-through
+              font-size: 10px
+              color: rgb(147, 153, 159)
+          .cartcontrol-wrapper
+            position: absolute
+            right: 0
+            bottom: 12px
+            line-height: 24px
+    .detailhandler
+      background white
+      position fixed
+      margin-bottom  55px
+      left:0
+      right:0
+      bottom:0
+      display flex
+      text-align center
+     .gotobuy
+        display inline-block
+        flex:2
+        text-align center
+      .totle-price
+        display inline-block
+        flex:3
+        text-align left
+        padding 10px
+      .select-all
+        display inline-block
+        flex:1
+        text-align center
+        padding 10px
 
-div.cart-right{
-  /*display: inline-block;*/
-  width:60%;
-  display: inline-block;
-  height: 100%;
-}
-div.cart-top{
-  text-align: center;
-  height: 50%;
-  width:100%;
-}
 
-div.cart-count{
-  width:100%;
-  height: 50%;
-  float: right;
-  text-align: center;
-
-}
- .cart-price{
-   vertical-align:middle;
-   height: 100%;
-   display: inline-block;
-   float: left;
-   margin-left: 18px;
-   margin-right: 18px;
-}
-
-.cart{
-    margin: 16px;
-    background: #ffffff;
-    border: 1px solid #dddee1;
-    border-radius: 8px;
-}
-    .cart-empty{
-        text-align: center;
-        padding: 8px;
-     }
-    .cart-header-main div{
-        text-align: center;
-        float: left;
-        font-size: 14px;
-    }
-    .cart-content-main{
-        height: 150px;
-        line-height: 100px;
-      /*text-align: center;*/
-        border-bottom: 1px dashed #e9eaec;
-        overflow: hidden;
-        margin-top: 8px;
-    }
-    .cart-content-main img{
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
-    .cart-control-minus,
-    .cart-control-add{
-        margin-left: 8px;
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        text-align: center;
-        background: #f8f8f9;
-        box-shadow: 0 1px 1px rgba(0,0,0,.2);
-        cursor: pointer;
-    }
-    .cart-control-delete{
-        cursor: pointer;
-        color:#2d8cf0;
-    }
-    .cart-promotion{
-       padding: 16px 32px;
-    }
-    .cart-control-promotion,
-    .cart-control-order{
-        display: inline-block;
-        padding: 8px 32px;
-        background: #2d8cf0;
-        color: #fff;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-    .cart-control-promotion{
-        padding: 2px 6px;
-        font-size: 12px;
-        border-radius: 3px;
-    }
-    .cart-footer{
-        padding: 32px;
-        text-align: right;
-    }
-    .cart-footer-desc{
-    display: inline-block;
-    padding: 0 8px;
-}
-    .cart-footer-desc span{
-        color: #f2352e;
-        font-size: 20px;
-    }
 </style>
+

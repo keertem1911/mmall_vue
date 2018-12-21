@@ -25,7 +25,7 @@
         <div class="mdetail_content">
           <div class="product-price">
             <div class="now">￥{{detail.price}}</div>
-            <div class="old">￥{{detail.oldPrice}}</div>
+            <div class="old" v-if="this.detail.oldPrice">￥{{detail.oldPrice}}</div>
           </div>
           <div class="product-name">
             <i class="iconfont icon-logo"></i>
@@ -38,8 +38,8 @@
     </div>
     <div class="detailhandler">
       <div class="car-div">
-        <span class="car-num" v-if="carNum>0" >{{carNum.keySize}}</span>
-        <i class="iconfont icon-gouwuche"></i></div>
+        <span class="car-num" v-if="totalCount>0" >{{totalCount}}</span>
+        <i class="iconfont icon-gouwuche" @click="$router.push('/shopping')"></i></div>
       <div class="add-car"><mt-button  @click="addCar" size="large" type="danger" >加入购物车</mt-button></div>
       <div class="gotobuy"><mt-button @click="buyNow" size="large" style="color: #ffffff;background: #f25807">立即购买</mt-button></div>
     </div>
@@ -49,7 +49,7 @@
 <script>
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
-    import {mapState} from 'vuex'
+    import {mapState,mapGetters} from 'vuex'
     import BScroll from 'better-scroll'
     export default {
         data () {
@@ -60,7 +60,8 @@
           }
         },
       computed:{
-        ...mapState(['detail','carNum'])
+        ...mapState(['detail']),
+        ...mapGetters(['totalCount'])
       },
       watch: {
         detail (value) { // categorys数组中有数据了, 在异步更新界面之前执行
@@ -84,11 +85,12 @@
         }
       },
         methods:{
+
           backgo(){
             this.$router.go(-1);
           },
           addCar() {
-                this.$store.dispatch('addCar',{id:this.id,num:1});
+                this.$store.dispatch('addCar',{id:this.id,count:1,price:this.detail.price});
             },
           buyNow(){}
         },

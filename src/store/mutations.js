@@ -1,3 +1,4 @@
+import vue from 'vue'
 import {
   RECEIVE_ADDRESS,
   RECEIVE_INDEXITEMS,
@@ -8,15 +9,52 @@ import {
   RECEIVE_RECORDUSER,
   RECEIVE_LOGOUT,
   RECEIVE_PRODUCTID,
-  RECEIVE_ADDCAR
+  RECEIVE_ADDCAR,
+  DECREMENT_FOOD_COUNT,
+  INCREMENT_FOOD_COUNT,
+  RECEIVE_CARS,
+  SELECTED_ALL_FOODS,
+  UNSELECTED_ALL_FOODS
 } from './mutation-type'
 export default {
-  [RECEIVE_ADDCAR](state,{id,num}){
-    console.log(num+" =>"+id )
-    if(state.carNum[id]){
-      state.carNum[id]=num+state.carNum[id];
+
+  [SELECTED_ALL_FOODS](state){
+    state.cartFoods.forEach(item=>item.selected=true)
+  },
+  [UNSELECTED_ALL_FOODS](state){
+    state.cartFoods.forEach(item=>item.selected=false)
+  },
+  [RECEIVE_CARS](state,cartFoods){
+    state.cartFoods=cartFoods;
+  },
+  [INCREMENT_FOOD_COUNT](state,food){
+      if(food.count){
+        food.count++;
+      }else{
+          vue.set(food,'count',1);
+        state.cartFoods.push(food);
+      }
+
+  },
+  [DECREMENT_FOOD_COUNT](STATE,food){
+
+      if(food.count){
+        food.count--;
+        // if(food.count===0){
+        // state.cartFoods.splice(state.cartFoods.indexOf(food),1)
+        // }
+      }
+
+  },
+  [RECEIVE_ADDCAR](state,{id,count,price}){
+    const idx= state.cartFoods.findIndex(d=>d.id===id);
+    console.log(idx)
+    if(idx>0){
+      state.cartFoods[idx].count=count+state.cartFoods[idx].count;
     }else{
-      state.carNum[id]=num;
+      const food= {id,count,price};
+      console.log(food)
+      state.cartFoods.push(food);
     }
   },
   [RECEIVE_LOGOUT](state){
@@ -44,32 +82,6 @@ export default {
   },
   [RECEIVE_CATEGORYS](state,{category}){
     state.categorys= category;
-  },
-
-  emptyCart(state){
-    state.cartList=[];
-  },
-  editCartCount(state,payload){
-    const product= state.cartList.find(item=>item.id === payload.id);
-    product.count += payload.count;
-  },
-  deleteCart(state,id){
-    const index= state.cartList.findIndex(item=>item.id===id);
-    state.cartList.splice(index,1);
-  },
-  setProductList(state,data){
-    state.productList=data
-  },
-  addCar (state, id) {
-    const isAdded= state.cartList.find(m=>m.id ===id);
-    if(isAdded){
-      isAdded.count++
-    }else{
-      state.cartList.push({
-        id,
-        count:1
-      })
-    }
-
   }
+
 }

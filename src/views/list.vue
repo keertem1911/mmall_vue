@@ -57,7 +57,7 @@
             }
         },
         computed: {
-          ...mapState(['cartList','colors','brands','productList']),
+          ...mapState(['colors','brands','productList']),
             filteredAndOrderedList(){
                 let list= [...this.productList];
                 if (this.filterBrand !== '') {

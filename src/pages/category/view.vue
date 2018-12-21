@@ -18,11 +18,11 @@
       </div>
       <div class="foods-wrapper">
         <ul ref="foodsUl">
-          <li class="food-list-hook" @click="$router.push(`/product/${good.id}`)" v-for="(good, index) in categorys" :key="index">
+          <li class="food-list-hook"  v-for="(good, index) in categorys" :key="index">
             <h1 class="title">{{good.name}}</h1>
             <ul>
               <li class="food-item bottom-border-1px" v-for="(food, index) in good.children"
-                  :key="index" @click="showFood(food)">
+                  :key="index" @click="$router.push(`/product/${food.id}`)">
                 <div class="icon">
                   <img width="57" height="57" :src="food.image_path">
                 </div>
@@ -145,14 +145,6 @@
         // 平滑滑动右侧列表
         this.foodsScroll.scrollTo(0, -scrollY, 300)
       },
-
-      // 显示点击的food
-      showFood (food) {
-        // 设置food
-        this.food = food;
-        // 显示food组件 (在父组件中调用子组件对象的方法)
-        this.$refs.food.toggleShow()
-      }
     },
 
     // components: {

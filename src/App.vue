@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view></router-view>
-    <tab-footer style="margin-top: 20px;" v-show="this.$route.meta.showFooter"></tab-footer>
+    <tab-footer style="margin-top: 20px;"  :message="this.$route.meta.index" v-show="this.$route.meta.showFooter"></tab-footer>
   </div>
 </template>
 <script>
@@ -25,11 +25,7 @@
       }]
     }
   },
-    computed:{
-      cartList(){
-        return this.$store.state.cartList
-      }
-    },
+
     mounted(){
       this.getUserInfo()
     },
