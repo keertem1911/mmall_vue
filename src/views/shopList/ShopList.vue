@@ -1,5 +1,5 @@
 <template>
-  <div class="shop_container">
+  <div class="shoplist-container">
     <ul class="shop_list" v-if="shopList.length">
       <li class="shop_li border-1px" v-for="(shop, index) in shopList"
           :key="index" @click="$router.push(`/product/${shop.id}`)">
@@ -49,7 +49,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixins.styl"
-  .shop_container
+  .shoplist-container
     margin-bottom 10px
     .shop_list
       .shop_li

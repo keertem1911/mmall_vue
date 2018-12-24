@@ -11,7 +11,9 @@ export default {
   userinfo:{},
   detail:{
   images:[],
-  desclist:[]
+  desclist:[],
+  //订单
+  orderlist:[]
   }
 
 

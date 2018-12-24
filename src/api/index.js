@@ -247,3 +247,15 @@ export const reqAddAddress=(
   },'post');
 
 export const reqProductById= (productId)=>ajax(`${BASE_URL}/product/${productId}`);
+
+/**
+ * 获取订单列表
+ *
+ * @param type
+ * 1 所有
+ * 2 待付款
+ * 3 待收货
+ * 4 已完成
+ * 5 已取消
+ */
+export const reqOrderList=(type)=>ajax(`${BASE_URL}/orderlist`,{type},type='POST');

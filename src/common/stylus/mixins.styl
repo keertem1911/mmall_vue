@@ -40,6 +40,14 @@ bg-image($url)
   background-image:url($url+"@2x.png")
   @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
     background-image:url($url+"@3x.png")
+text-border($color)
+  color: $color
+  margin  4px
+  width 80px
+  height 20px
+  text-align center
+  border 1px solid $color
+  border-radius 20px
 
 //清除浮动
 clearFix()

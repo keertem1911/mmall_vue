@@ -40,12 +40,12 @@
             {
               icon: "icon-32",
               name:'待付款',
-              action:'/orderlist/2'
+              action:'/orders/unplay'
             },
             {
               icon: "icon-daishouhuofuben",
               name:'待收货',
-              action:'/orderlist/3'
+              action:'/orders/unreceive'
             },
             {
               icon: "icon-pinglun",
@@ -55,7 +55,7 @@
             {
               icon: "icon-order_icon",
               name:'我的订单',
-              action:'/orderlist/1'
+              action: '/orders/all'
             }
           ]
         }

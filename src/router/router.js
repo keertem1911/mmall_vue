@@ -4,10 +4,15 @@ import List from '../views/list.vue'
 import Shopping from '../pages/shopping/shopping.vue'
 import Index from '../pages/index/index.vue'
 import Category from '../pages/category/view.vue'
-import OrderList from '../views/orderlist/view'
 import My from '../pages/my/view.vue'
 import CommentList from '../views/comment/view'
 import Login from '../pages/login/login'
+const  OrderListAll=()=> import('../pages/my/orderlist/all');
+import OrderListMain from '../pages/my/orderlist/view'
+const OrderListUnPlay= ()=> import('../pages/my/orderlist/unplay');
+const OrderListUnReceive = ()=> import( '../pages/my/orderlist/unreceive');
+const OrderListFinished = ()=> import('../pages/my/orderlist/finished');
+const OrderListCanceled = ()=> import('../pages/my/orderlist/canneled');
 const routers=[
     {
         path:'/product/:id',
@@ -53,12 +58,6 @@ const routers=[
         },
         component: Category
     },{
-        path:'/orderlist/:id',
-        meta:{
-            title:'我的订单',
-        },
-        component: OrderList
-    },{
         path:'/commentlist',
         meta:{
             title:'我的评论',
@@ -72,6 +71,39 @@ const routers=[
           index:'myself'
         },
         component: My
+  },{
+    path:'/orders/:name',
+    meta:{
+      title:'订单'
+    },
+    component: OrderListMain,
+    children: [  //这里就是二级路由的配置
+      {
+        path: '/orderlist/all',
+        name: 'all',
+        component: OrderListAll
+      },{
+        path: '/orderlist/unplay',
+        name: 'unplay',
+        component: OrderListUnPlay
+      },{
+        path: '/orderlist/unreceive',
+        name: 'unreceive',
+        component: OrderListUnReceive
+      },{
+        path: '/orderlist/finished',
+        name: 'unreceive',
+        component: OrderListFinished
+      },{
+        path: '/orderlist/cannceled',
+        name: 'unreceive',
+        component: OrderListCanceled
+      },
+      {
+        path: '',
+        redirect: '/orderlist/all'
+      }
+    ]
   },{
   path:'/*',
     redirect:'/index'

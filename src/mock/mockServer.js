@@ -205,4 +205,72 @@ Mock.mock(RegExp('/api/car' + ".*"), {
     }
   ]
 });
+/**
+ *
+ */
+Mock.mock(RegExp('/api/orderlist' + ".*"), {
+  code: 0,
+  "data":[
+    {
+      "id|1000-9999":11,
+      items:[
+        {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
+        }, {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
+        }, {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
+        }, {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
+        }, {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
+        }, {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
+        },
+      ],
+      "totlePrice|10-200":1,
+      "status|1-5":1,
+      num:6
+    },
+    {
+      "id|1000-9999":11,
+      items:[
+        {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"法国贝德玛（Bioderma）舒妍多效洁肤液500ml （卸妆水 深层清洁 粉水 舒缓保湿 敏感肌 眼唇 官方授权）",
+        }
+      ],
+
+      "totlePrice|10-200":1,
+      "status|1-5":1,
+        num:1
+    }, {
+      "id|1000-9999":11,
+      items:[
+        {
+          "id|1000-9999":11,
+          image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+          name:"法国贝德玛（Bioderma）舒妍多效洁肤液500ml （卸妆水 深层清洁 粉水 舒缓保湿 敏感肌 眼唇 官方授权）",
+        }
+      ],
+      "totlePrice|10-200":1,
+      "status|1-5":1,
+        num:1
+    },
+  ]
+});
+
 
