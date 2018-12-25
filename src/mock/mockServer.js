@@ -150,10 +150,15 @@ Mock.mock(RegExp('/api/product' + ".*"), {
   code: 0,
   data:
     {
-      "images|1-4":[
+      "images":[
+            Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+            Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+            Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+            Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+            Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
             Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
       ],
-        name:Mock.Random.paragraph( 1 ),
+        name:"芙丽芳丝（freeplus）净润洗面霜100g（洗面奶洁面乳 男女适用 氨基酸系 日本 护肤品化妆品 温和不易紧绷）",
       "rating|1-10":2,
       "recent_order_num|1-100":1,
       "id|1000-9999":11,
@@ -172,7 +177,7 @@ Mock.mock(RegExp('/api/product' + ".*"), {
 });
 Mock.mock(RegExp('/api/car' + ".*"), {
   code: 0,
-  "data":[
+  "data|0-1":[
     {
       "id|1000-9999":11,
       image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
@@ -183,26 +188,26 @@ Mock.mock(RegExp('/api/car' + ".*"), {
       count:1,
       selected:true
     },
-    {
-      "id|1000-9999":11,
-      image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
-      name:Mock.mock('@name'),
-      "price|10-200":1,
-      "rating|1-10":2,
-      "recent_order_num|1-100":1 ,
-      count:1,
-      selected:true
-    },
-    {
-      "id|1000-9999":11,
-      image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
-      name:Mock.mock('@name'),
-      "price|10-200":1,
-      "rating|1-10":2,
-      "recent_order_num|1-100":1 ,
-      count:1,
-      selected:false
-    }
+    // {
+    //   "id|1000-9999":11,
+    //   image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+    //   name:Mock.mock('@name'),
+    //   "price|10-200":1,
+    //   "rating|1-10":2,
+    //   "recent_order_num|1-100":1 ,
+    //   count:1,
+    //   selected:true
+    // },
+    // {
+    //   "id|1000-9999":11,
+    //   image_path: Mock.Random.dataImage('200x100',Mock.mock('@color'), Mock.mock('@name')) ,
+    //   name:Mock.mock('@name'),
+    //   "price|10-200":1,
+    //   "rating|1-10":2,
+    //   "recent_order_num|1-100":1 ,
+    //   count:1,
+    //   selected:false
+    // }
   ]
 });
 /**
@@ -273,4 +278,24 @@ Mock.mock(RegExp('/api/orderlist' + ".*"), {
   ]
 });
 
-
+Mock.mock(RegExp('/api/address'), {
+  code:0,
+  data:[
+    {
+      "id|1-10000":11,
+      receiveName:'王嘻嘻',// 收件人
+      phone:'188****0544',//联系方式
+      addressInfo:'西安盐田区下属上2号2A22222',//详细地址
+      isdefault:false,//是否默认
+      tags:['家']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    }
+  ]
+});

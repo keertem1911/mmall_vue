@@ -222,6 +222,24 @@ export const reqChangeName=(name)=>ajax('/api/user/name',{name},'put');
  */
 export const reqAddOrder=()=>ajax('/api/order',{},'post');
 /**
+ * 获取收货地址列表
+ * resp
+ * {
+ *     code:0,
+ *     data:[
+ *         {
+ *              id:"",
+ *             receiveName:'',// 收件人
+ *             phone:'',//联系方式
+ *             addressInfo:''//详细地址
+ *             isdefault:false,//是否默认
+ *             tags:['家','学校']//标签
+ *         }
+ *     ]
+ * }
+ */
+export const reqAddress= ()=> ajax(`${BASE_URL}/address`);
+/**
  *
  * @param province 省份编码
  * @param city 城市编码

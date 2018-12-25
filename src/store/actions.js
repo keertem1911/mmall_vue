@@ -8,10 +8,11 @@ import {
   reqLogOut,
   reqProductById,
   reqAddCar,
-  reqCars
+  reqCars,
+  reqRemoveCar,
+  reqAddress
 } from '../api'
 import {
-  RECEIVE_ADDRESS,
   RECEIVE_BANNERS,
   RECEIVE_INDEXITEMS,
   RECEIVE_CATEGORYS,
@@ -25,7 +26,11 @@ import {
   DECREMENT_FOOD_COUNT,
   SELECTED_ALL_FOODS,
   UNSELECTED_ALL_FOODS,
-  RECEIVE_CARS
+  RECEIVE_CARS,
+  SELECTED_ALL_EDITFOODS,
+  UNLECTED_ALL_EDITFOODS,
+  RECEIVE_INITEDITSELECTED,
+  RECEIVE_ADDRESS
 
 } from './mutation-type'
 import product_data from "@/product";
@@ -76,11 +81,11 @@ export  default {
     recordUser({commit},user){
       commit(RECEIVE_RECORDUSER,{user})
   },
-  async getProduct({commit},id){
-    console.log("getProduct "+id)
+  async getProduct({commit},{id,callback}){
+    console.log("getProduct "+id);
     const result= await  reqProductById(id);
     if(result.code===0){
-        commit(RECEIVE_PRODUCTID,{detail:result.data})
+        commit(RECEIVE_PRODUCTID,{detail:result.data,callback})
 
     }
   },
@@ -91,10 +96,10 @@ export  default {
       commit(RECEIVE_LOGOUT)
       }
   },
-  async addCar({commit},{id,count,price}){
+  async addCar({commit},{id,count,price,selected}){
     const result= await reqAddCar(id,count);
     if(result.code === 0){
-       commit(RECEIVE_ADDCAR,{id,count,price})
+       commit(RECEIVE_ADDCAR,{id,count,price,selected})
     }
   },
   updateFoodCount({commit},{food,isAdd}){
@@ -116,6 +121,30 @@ export  default {
     }else{
       commit(UNSELECTED_ALL_FOODS);
 
+    }
+  },
+  changeEditSelected({commit},{isSelected}){
+    if(isSelected){
+      commit(SELECTED_ALL_EDITFOODS);
+    }else{
+      commit(UNLECTED_ALL_EDITFOODS);
+
+    }
+  },
+  initEditSelected({commit}){
+    commit(RECEIVE_INITEDITSELECTED);
+  },
+  async deleteShoppingItems({commit,state},callback){
+    const select_ids= state.cartFoods.filter(item=>item.editselected).map(item=>item.id);
+    const result= await  reqRemoveCar(select_ids);
+    if(result.code=== 0){
+      callback&&callback();
+    }
+  },
+  async getAddress({commit}){
+    const result= await  reqAddress();
+    if(result.code===0){
+      commit(RECEIVE_ADDRESS,{address:result.data});
     }
   }
 

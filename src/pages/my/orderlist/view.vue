@@ -2,7 +2,7 @@
     <div class="orderlist">
       <div class="header">
         <mt-header fixed title="我的订单">
-          <mt-button icon="back" slot="left" @click="backgo">返回</mt-button>
+          <mt-button icon="back" slot="left" @click="backgo"></mt-button>
         </mt-header>
       </div>
       <div class="tab">

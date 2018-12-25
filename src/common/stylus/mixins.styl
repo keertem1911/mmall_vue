@@ -40,15 +40,18 @@ bg-image($url)
   background-image:url($url+"@2x.png")
   @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
     background-image:url($url+"@3x.png")
-text-border($color)
+text-border($color,$width=80px,$height=20px)
   color: $color
   margin  4px
-  width 80px
-  height 20px
+  width $width
+  height $height
   text-align center
   border 1px solid $color
-  border-radius 20px
-
+  border-radius $height
+text-full-border($color,$width=80px,$height=20px)
+  text-border($color,$width,$height)
+  background $color
+  color: white
 //清除浮动
 clearFix()
   *zoom 1

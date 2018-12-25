@@ -1,16 +1,24 @@
 <template>
     <div class="cart">
         <div class="header">
-             <mt-header fixed title="购物车清单"></mt-header>
+             <mt-header fixed title="购物车清单">
+               <mt-button  slot="right"  @click="editItem" v-show="cartFoods.length>0" >编辑</mt-button>
+
+             </mt-header>
         </div>
         <div class="cart-content">
           <div class="foods-wrapper" >
             <ul>
                   <li class="food-item bottom-border-1px" v-for="(car, index) in cartFoods"
                       :key="index" v-if="car.count>0">
-                    <div class="seleced-input">
+                    <div class="seleced-input" v-if="!isEdit">
                       <i class="car-selected iconfont icon-radiobox" v-if="car.selected" @click="car.selected=!car.selected"></i>
                       <i class="car-selected iconfont icon-radio02"v-else @click="car.selected=!car.selected"></i>
+                      <!--<input  class="car-selected" type="checkbox" v-model="car.selected"/>-->
+                    </div>
+                    <div class="seleced-input" v-else>
+                      <i class="car-selected iconfont icon-radiobox" v-if="car.editselected" @click="car.editselected=!car.editselected"></i>
+                      <i class="car-selected iconfont icon-radio02" v-else @click="car.editselected=!car.editselected"></i>
                       <!--<input  class="car-selected" type="checkbox" v-model="car.selected"/>-->
                     </div>
                     <div class="icon">
@@ -27,15 +35,17 @@
                         <span class="now">￥{{car.price}}</span>
                         <span class="old" v-if="car.oldPrice">￥{{food.oldPrice}}</span>
                       </div>
-                      <div class="cartcontrol-wrapper">
+                      <div class="cartcontrol-wrapper" v-show="!isEdit">
                         <car-control :food="car"/>
                       </div>
                     </div>
                   </li>
             </ul>
           </div>
-          <div class="cart-empty" v-if="totalCount===0">购物车为空</div>
-          <div class="detailhandler">
+          <div class="cart-empty" v-if="cartFoods.length===0">
+            <div class="cart-empty-content"><i class="iconfont icon-gouwuche1" ></i>购物车是空的</div>
+          </div>
+          <div class="detailhandler" v-if="!isEdit" v-show="cartFoods.length>0">
             <div class="select-all" @click="changeSelected" >
               <i class="iconfont icon-radiobox" v-if="isAllSelected" >全选</i>
               <i class="iconfont icon-radio02" v-else >全选</i>
@@ -43,7 +53,16 @@
             <div class="totle-price">
               合计:￥{{totalPrice}}
             </div>
-            <div class="gotobuy"><mt-button  size="large" style="color: #ffffff;background: #f25807">去结算({{totalCount}})</mt-button></div>
+            <div class="gotobuy"><mt-button @click="gotobuy" size="large" style="color: #ffffff;" :style="{background:(totalCount&&cartFoods.length>0?'#f25807':'#e1e1e1')}">去结算({{totalCount}})</mt-button></div>
+          </div>
+          <div class="detailhandler" v-else v-show="cartFoods.length>0">
+            <div class="select-all" @click="changeEditSelected" >
+              <i class="iconfont icon-radiobox" v-if="isEditSelected" >全选</i>
+              <i class="iconfont icon-radio02" v-else >全选</i>
+            </div>
+            <div class="totle-price">
+            </div>
+            <div class="gotobuy"><mt-button @click="deleteItem" size="large" type="danger"  >删除</mt-button></div>
           </div>
         </div>
     </div>
@@ -59,11 +78,12 @@
        },
         data(){
           return {
+            isEdit:false
           }
         },
       computed:{
         ...mapState(['cartFoods']),
-        ...mapGetters(['totalCount','totalPrice','isAllSelected']),
+        ...mapGetters(['totalCount','totalPrice','isAllSelected','isEditSelected']),
       },
 
       mounted() {
@@ -76,8 +96,28 @@
       },
         name: "cart",
       methods: {
+        deleteItem(){
+            this.$store.dispatch("deleteShoppingItems",()=>{
+              this.$store.dispatch('getCar');
+              this.isEdit=false
+            })
+        },
+        editItem(){
+          if(!this.isEdit)
+            this.$store.dispatch('initEditSelected');
+          this.isEdit=!this.isEdit
+
+        },
+        gotobuy(){
+          if(this.totalCount>0){
+
+          }
+        },
         changeSelected(){
           this.$store.dispatch('changeSelected',{isSelected:!this.isAllSelected})
+        },
+        changeEditSelected(){
+          this.$store.dispatch('changeEditSelected',{isSelected:!this.isEditSelected})
         },
         // 初始化滚动
         _initScroll() {
@@ -159,7 +199,18 @@
             position: absolute
             right: 0
             bottom: 12px
-            line-height: 24px
+            line-height: 24p
+    .cart-empty
+      background white
+      height: 60px
+      margin 8px
+      text-align center
+      .cart-empty-content
+        padding-top 10px
+        font-size 20px
+        .iconfont
+          margin-right 8px
+          font-size 30px
     .detailhandler
       background white
       position fixed

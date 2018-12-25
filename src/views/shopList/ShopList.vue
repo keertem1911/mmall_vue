@@ -41,7 +41,7 @@
     },
     data () {
       return {
-        baseImgUrl: 'http://cangdu.org:8001/img/'
+        baseImgUrl: ''
       }
     }
   }

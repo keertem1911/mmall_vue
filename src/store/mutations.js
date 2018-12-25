@@ -14,10 +14,27 @@ import {
   INCREMENT_FOOD_COUNT,
   RECEIVE_CARS,
   SELECTED_ALL_FOODS,
-  UNSELECTED_ALL_FOODS
+  UNSELECTED_ALL_FOODS,
+  UNLECTED_ALL_EDITFOODS,
+  SELECTED_ALL_EDITFOODS,
+  RECEIVE_INITEDITSELECTED
 } from './mutation-type'
 export default {
 
+  [RECEIVE_INITEDITSELECTED](state){
+    state.cartFoods.forEach(item=>{
+      if(item.editselected===undefined){
+          vue.set(item,'editselected',false)
+      }else
+      item.editselected=false
+    })
+  },
+  [SELECTED_ALL_EDITFOODS](state){
+    state.cartFoods.forEach(item=>item.editselected=true)
+  },
+  [UNLECTED_ALL_EDITFOODS](state){
+    state.cartFoods.forEach(item=>item.editselected=false)
+  },
   [SELECTED_ALL_FOODS](state){
     state.cartFoods.forEach(item=>item.selected=true)
   },
@@ -48,20 +65,19 @@ export default {
   },
   [RECEIVE_ADDCAR](state,{id,count,price}){
     const idx= state.cartFoods.findIndex(d=>d.id===id);
-    console.log(idx)
-    if(idx>0){
-      state.cartFoods[idx].count=count+state.cartFoods[idx].count;
-    }else{
-      const food= {id,count,price};
-      console.log(food)
+    if(idx<0){
+      const food= {id,count,price,selected:true};
       state.cartFoods.push(food);
+    }else{
+      state.cartFoods[idx].count =count;
     }
   },
   [RECEIVE_LOGOUT](state){
     state.userinfo={};
   },
-  [RECEIVE_PRODUCTID](state,{detail}){
+  [RECEIVE_PRODUCTID](state,{detail,callback}){
     state.detail=detail;
+    callback && callback()
   },
   [RECEIVE_RECORDUSER](state,{user}){
     state.userinfo=user;
@@ -73,6 +89,7 @@ export default {
     state.categoryList=categoryItems;
   },
   [RECEIVE_ADDRESS] (state,{address}) {
+    state.addressList= address
   },
   [RECEIVE_BANNERS](state,{banners}){
     state.banners=banners;

@@ -13,7 +13,9 @@ export default {
   images:[],
   desclist:[],
   //订单
-  orderlist:[]
+  orderlist:[],
+  cartEditSelect:[],
+    addressList:[]
   }
 
 

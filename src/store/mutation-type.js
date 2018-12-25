@@ -14,3 +14,6 @@ export const  INCREMENT_FOOD_COUNT= 'receive_increment_food';
 export const  DECREMENT_FOOD_COUNT= 'receive_decrement_food';
 export const   SELECTED_ALL_FOODS= 'receive_selectedall';
 export const   UNSELECTED_ALL_FOODS= 'receive_unselectedall';
+export const   SELECTED_ALL_EDITFOODS= 'receive_selectededitall';
+export const   UNLECTED_ALL_EDITFOODS= 'receive_unselectededitall';
+export const   RECEIVE_INITEDITSELECTED= 'receive_initeditselected';

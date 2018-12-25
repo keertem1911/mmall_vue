@@ -15,7 +15,7 @@
               <div class="swiper-slide" v-for="(banner, index) in banners" :key="index">
                 <router-link :to="`/product/${banner.id}`">
                   <div class="food_container">
-                    <img :src="baseImageUrl+banner.image_url">
+                    <img :src="banner.image_url">
                   </div>
                 </router-link>
               </div>

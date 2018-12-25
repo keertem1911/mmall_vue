@@ -7,6 +7,9 @@ import Category from '../pages/category/view.vue'
 import My from '../pages/my/view.vue'
 import CommentList from '../views/comment/view'
 import Login from '../pages/login/login'
+import Settings from '../pages/my/settings/view.vue'
+import Address from '../pages/my/settings/address'
+import AccountPwd from '../pages/my/settings/accountpwd'
 const  OrderListAll=()=> import('../pages/my/orderlist/all');
 import OrderListMain from '../pages/my/orderlist/view'
 const OrderListUnPlay= ()=> import('../pages/my/orderlist/unplay');
@@ -71,7 +74,30 @@ const routers=[
           index:'myself'
         },
         component: My
-  },{
+  },
+  {
+    path:'/settings',
+    meta:{
+      title:'我的设置',
+    },
+    component: Settings
+
+  },
+  {
+    path: '/address',
+    meta:{
+      title:'地址管理',
+    },
+    component: Address
+  },
+  {
+    path: '/accountSecurity',
+    meta:{
+      title:'账户安全',
+    },
+    component: AccountPwd
+  },
+  {
     path:'/orders/:name',
     meta:{
       title:'订单'
@@ -104,7 +130,8 @@ const routers=[
         redirect: '/orderlist/all'
       }
     ]
-  },{
+  },
+  {
   path:'/*',
     redirect:'/index'
   }

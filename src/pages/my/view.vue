@@ -2,7 +2,7 @@
     <div class="my">
       <div class="header">
         <mt-header fixed title="我的">
-          <mt-button  slot="right"  class="iconfont icon-setting"></mt-button>
+          <mt-button  slot="right"  class="iconfont icon-setting"  @click="$router.push('/settings')"></mt-button><!--v-show="userinfo._id"-->
         </mt-header>
       </div>
       <div class="my-main-content">
