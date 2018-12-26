@@ -296,6 +296,97 @@ Mock.mock(RegExp('/api/address'), {
       addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
       isdefault:true,//是否默认
       tags:['学校']//标签
+    },{
+      "id|1-10000":11,
+      receiveName:'王嘻嘻',// 收件人
+      phone:'188****0544',//联系方式
+      addressInfo:'西安盐田区下属上2号2A22222',//详细地址
+      isdefault:false,//是否默认
+      tags:['家']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    },{
+      "id|1-10000":11,
+      receiveName:'王嘻嘻',// 收件人
+      phone:'188****0544',//联系方式
+      addressInfo:'西安盐田区下属上2号2A22222',//详细地址
+      isdefault:false,//是否默认
+      tags:['家']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    },{
+      "id|1-10000":11,
+      receiveName:'王嘻嘻',// 收件人
+      phone:'188****0544',//联系方式
+      addressInfo:'西安盐田区下属上2号2A22222',//详细地址
+      isdefault:false,//是否默认
+      tags:['家']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    },{
+      "id|1-10000":11,
+      receiveName:'王嘻嘻',// 收件人
+      phone:'188****0544',//联系方式
+      addressInfo:'西安盐田区下属上2号2A22222',//详细地址
+      isdefault:false,//是否默认
+      tags:['家']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    },{
+      "id|1-10000":11,
+      receiveName:'王嘻嘻',// 收件人
+      phone:'188****0544',//联系方式
+      addressInfo:'西安盐田区下属上2号2A22222',//详细地址
+      isdefault:false,//是否默认
+      tags:['家']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
+    },
+    {
+      "id|1-10000":11,
+      receiveName:'张此次',// 收件人
+      phone:'176****0521',//联系方式
+      addressInfo:'陕西省西安市长安区西长安街618号13号公寓楼',//详细地址
+      isdefault:true,//是否默认
+      tags:['学校']//标签
     }
   ]
 });

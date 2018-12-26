@@ -17,7 +17,7 @@
           <div class="main-type">
             <div class="type-item" v-for="item in types" @click="$router.push(item.action)">
               <div class="type-img"><i class="iconfont" :class="item.icon"></i></div>
-              <div class="type-name">{{ item.name }}</div>
+              <div class="type-img">{{ item.name }}</div>
             </div>
           </div>
         <div  class="profile_my_order border-1px" v-if="userinfo._id">
@@ -47,11 +47,11 @@
               name:'待收货',
               action:'/orders/unreceive'
             },
-            {
-              icon: "icon-pinglun",
-              name:'待评论',
-              action:'/commentlist'
-            },
+            // {
+            //   icon: "icon-pinglun",
+            //   name:'待评论',
+            //   action:'/commentlist'
+            // },
             {
               icon: "icon-order_icon",
               name:'我的订单',
@@ -111,21 +111,17 @@
     width:20%;
     height: 48px;
     margin: 8px;
-    padding: 7px 0;
+    padding: 6px 0;
     flex:1;
     text-align: center;
     font-size: 12px;
     .type-img
       padding: 0;
-      margin: 8px auto 0;
+      margin: 4px auto 0;
       & i
         font-size: 24px;
         width:64px;
         height:64px;
-    .type-name
-      padding: 0;
-      margin: 6px;
-      line-height: 1;
     & span
       float: bottom;
 .profile_my_order

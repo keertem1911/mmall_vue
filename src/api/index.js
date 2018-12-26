@@ -264,6 +264,12 @@ export const reqAddAddress=(
     province,city,area,text,tag,name,phone,isdefault
   },'post');
 
+/**
+ * 删除收货地址
+ * @param id
+ */
+export const reqRemoveAddress=(id)=>ajax(`${BASE_URL}/address/${id}`,{},'DELETE');
+
 export const reqProductById= (productId)=>ajax(`${BASE_URL}/product/${productId}`);
 
 /**

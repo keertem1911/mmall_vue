@@ -9,6 +9,7 @@ import CommentList from '../views/comment/view'
 import Login from '../pages/login/login'
 import Settings from '../pages/my/settings/view.vue'
 import Address from '../pages/my/settings/address'
+import AddressDetail from '../pages/my/settings/addressDetail'
 import AccountPwd from '../pages/my/settings/accountpwd'
 const  OrderListAll=()=> import('../pages/my/orderlist/all');
 import OrderListMain from '../pages/my/orderlist/view'
@@ -89,6 +90,12 @@ const routers=[
       title:'地址管理',
     },
     component: Address
+  }, {
+    path: '/addressDetail',
+    meta:{
+      title:'地址编辑',
+    },
+    component: AddressDetail
   },
   {
     path: '/accountSecurity',
@@ -98,7 +105,7 @@ const routers=[
     component: AccountPwd
   },
   {
-    path:'/orders/:name',
+    path:'/orders/:id',
     meta:{
       title:'订单'
     },
@@ -118,17 +125,15 @@ const routers=[
         component: OrderListUnReceive
       },{
         path: '/orderlist/finished',
-        name: 'unreceive',
+        name: 'finished',
         component: OrderListFinished
-      },{
-        path: '/orderlist/cannceled',
-        name: 'unreceive',
-        component: OrderListCanceled
-      },
-      {
-        path: '',
-        redirect: '/orderlist/all'
       }
+      ,{
+        path: '/orderlist/cannceled',
+        name: 'cannceled',
+        component: OrderListCanceled
+      }
+
     ]
   },
   {

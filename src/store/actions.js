@@ -10,7 +10,8 @@ import {
   reqAddCar,
   reqCars,
   reqRemoveCar,
-  reqAddress
+  reqAddress,
+  reqRemoveAddress
 } from '../api'
 import {
   RECEIVE_BANNERS,
@@ -141,10 +142,17 @@ export  default {
       callback&&callback();
     }
   },
-  async getAddress({commit}){
+  async getAddress({commit},callback){
     const result= await  reqAddress();
     if(result.code===0){
       commit(RECEIVE_ADDRESS,{address:result.data});
+      callback&& callback()
+    }
+  },
+  async deleteAddress({commit},{id,callback}){
+    const result= await  reqRemoveAddress();
+    if(result.code===0){
+      callback&& callback()
     }
   }
 

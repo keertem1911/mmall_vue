@@ -222,8 +222,9 @@
       text-align center
      .gotobuy
         display inline-block
-        flex:2
+        flex:3
         text-align center
+
       .totle-price
         display inline-block
         flex:3
@@ -231,9 +232,9 @@
         padding 10px
       .select-all
         display inline-block
-        flex:1
+        flex:2
         text-align center
-        padding 10px
+        padding 10px 8px 10px 4px
 
 
 </style>

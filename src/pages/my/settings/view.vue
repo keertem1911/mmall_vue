@@ -30,6 +30,7 @@
             {
               name:'地址管理',
               link:'/address',
+              value:'新增/修改地址',
               icon:'icon-shouhuodizhi'
             },
             {

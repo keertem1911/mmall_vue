@@ -118,7 +118,7 @@
     margin-left  30px
     .sum-right
       float right
-      width: 70%
+      width: 80%
       margin-right 5px
       & span
         font-weight bold

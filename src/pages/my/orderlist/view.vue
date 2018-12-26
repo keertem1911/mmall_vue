@@ -6,20 +6,20 @@
         </mt-header>
       </div>
       <div class="tab">
-        <div class="tab-item">
-          <router-link to="/orderlist/all" replace>全部</router-link>
+        <div class="tab-item" >
+          <router-link to="/orderlist/all" :class="{'router-link-active':name==='all'}"  replace>全部</router-link>
         </div>
         <div class="tab-item">
-          <router-link to="/orderlist/unplay" replace>待付款</router-link>
+          <router-link to="/orderlist/unplay" :class="{'router-link-active':name==='unplay'}" replace>待付款</router-link>
         </div>
         <div class="tab-item">
-          <router-link to="/orderlist/unreceive" replace>待收货</router-link>
+          <router-link to="/orderlist/unreceive" :class="{'router-link-active':name==='unreceive'}" replace>待收货</router-link>
         </div>
         <div class="tab-item">
-          <router-link to="/orderlist/finished" replace>已完成</router-link>
+          <router-link to="/orderlist/finished" :class="{'router-link-active':name==='finished'}" replace>已完成</router-link>
         </div>
         <div class="tab-item">
-          <router-link to="/orderlist/cannceled" replace>已取消</router-link>
+          <router-link to="/orderlist/cannceled" :class="{'router-link-active':name==='cannceled'}" replace>已取消</router-link>
         </div>
       </div>
       <keep-alive>
@@ -32,7 +32,7 @@
     export default {
       data(){
         return {
-          name:this.$route.params.name
+          name:this.$route.params.id
         }
       },
       name: "orderlist",
@@ -42,13 +42,14 @@
           }
       },
       mounted(){
-        switch (this.name) {
-          case 'all':   this.$router.push('/orderlist/all');break;
-          case 'unplay':   this.$router.push('/orderlist/unplay');break;
-          case 'unreceive':   this.$router.push('/orderlist/unreceive');break;
-          case 'finished':   this.$router.push('/orderlist/finished');break;
-          case 'canneled':   this.$router.push('/orderlist/canneled');break;
-          default:    this.$router.push('/orderlist/all');
+        console.log(this.$route.params.id)
+        switch (this.$route.params.id) {
+          case 'all':   this.$router.replace('/orderlist/all');break;
+          case 'unplay':   this.$router.replace('/orderlist/unplay');break;
+          case 'unreceive':   this.$router.replace('/orderlist/unreceive');break;
+          case 'finished':   this.$router.replace('/orderlist/finished');break;
+          case 'canneled':   this.$router.replace('/orderlist/canneled');break;
+          // default:    this.$router.push('/orderlist/all');
         }
 
       }
@@ -60,6 +61,7 @@
 
 .orderlist
   width: 100%
+  overflow hidden
   .tab
     height 40px
     line-height 40px
